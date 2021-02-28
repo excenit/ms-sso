@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="com.haulmont.cuba, de.diedavids.cuba.dataimport">
+
+    <module name="global" blocks="*">
+        <artifact name="sso-ms-global" appJar="true"/>
+
+        <property name="cuba.persistenceConfig" value="+com/excenit/sso/persistence.xml"/>
+        <property name="cuba.metadataConfig" value="+com/excenit/sso/metadata.xml"/>
+        <property name="cuba.viewsConfig" value="+com/excenit/sso/views.xml"/>
+    </module>
+    <module name="core" dependsOn="global" blocks="core">
+        <artifact name="sso-ms-core" appJar="true"/>
+        <artifact name="sso-ms-core" classifier="db" ext="zip" configuration="dbscripts"/>
+
+        <property name="cuba.springContextConfig" value="+com/excenit/sso/spring.xml"/>
+        <property name="cuba.mainMessagePack" value="+com.excenit.sso.core"/>
+    </module>
+    <module name="web" dependsOn="global" blocks="web">
+        <artifact name="sso-ms-web" appJar="true"/>
+        <artifact name="sso-ms-web" classifier="web" ext="zip" configuration="webcontent"/>
+
+        <property name="cuba.springContextConfig" value="+com/excenit/sso/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig" value="+com/excenit/sso/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig" value="+com/excenit/sso/web-screens.xml"/>
+        <property name="cuba.menuConfig" value="+com/excenit/sso/web-menu.xml"/>
+        <property name="cuba.permissionConfig" value="+com/excenit/sso/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack" value="+com.excenit.sso.web"/>
+    </module>
+</app-component>

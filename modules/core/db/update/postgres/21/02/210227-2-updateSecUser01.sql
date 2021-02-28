@@ -1,0 +1,1 @@
+update SEC_USER set DTYPE = 'sso_SsoUser' where DTYPE is null ;
