@@ -39,7 +39,6 @@ cuba {
 
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
-    appComponent('de.diedavids.cuba.dataimport:dataimport-global:0.14.1')
 }
 
 def postgres = 'org.postgresql:postgresql:42.2.9'
@@ -76,6 +75,8 @@ configure(globalModule) {
             runtime('javax.xml.bind:jaxb-api:2.3.1')
             runtime('org.glassfish.jaxb:jaxb-runtime:2.3.1')
         }
+        compile 'com.microsoft.graph:microsoft-graph:1.5.+'
+        compile 'com.microsoft.azure:msal4j:0.5.0-preview'
     }
 
     entitiesEnhancing {
@@ -195,7 +196,7 @@ subprojects {
 
         // metadata
         pkg {
-            repo = 'master'           // your repository name
+            repo = 'ms-sso'           // your repository name
             name = 'ms-sso'  // package name - it will be created upon upload
             desc = 'Single sign on with Microsoft'  // optional package description
 
@@ -208,7 +209,7 @@ subprojects {
             vcsUrl = 'https://github.com/excenit/ms-sso.git' // mandatory for Open Source projects
 
             licenses = ["Apache-2.0"]
-            labels = ['cuba-platform', 'opensource']
+            labels = ['ms-sso', 'cuba-platform', 'opensource']
 
             //githubRepo = 'amazingsearch/cuba-platform' // optional Github repository
             //githubReleaseNotesFile = 'README.md' // optional Github readme file
